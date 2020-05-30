@@ -20,7 +20,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 const int MAX_LENGHT = 256;
 
-enum clientElement // набор элементов управлени€
+enum clientElement // client controls
 {
 	button,
 	editCount,
@@ -35,8 +35,8 @@ enum clientElement // набор элементов управлени€
 
 using namespace std;
 
-const regex regNum("^[0-9]*$");//регул€рка дл€ ввода только чисел 
-const regex regLetter("^[a-z]$");//регул€рка дл€ ввода только букв англ. строчные 
+const regex regNum("^[0-9]*$");//regular expression on number
+const regex regLetter("^[a-z]$");//regular expression on letters
 
-bool saveFile(vector<string>codes, string identifier); // сохранение в файл
-vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int codeFormat);//генираци€ кодов
+bool saveFile(vector<string>codes, string identifier); // save into file
+vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int codeFormat);//code generetion
