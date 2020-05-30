@@ -1,17 +1,16 @@
-//-------------функция main + GUI 
+//-------------function main + GUI 
 #include "CodeGen.h"
 
-HFONT hFont = CreateFont(20, 0, 0, 2, FW_REGULAR, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, L"Roboto");//шрифт
-HWND hEditCount, hEditIdent, hEditType, hEditLenght; // поля для ввода
+HFONT hFont = CreateFont(20, 0, 0, 2, FW_REGULAR, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, L"Roboto");//fonts
+HWND hEditCount, hEditIdent, hEditType, hEditLenght; // input filds
 
 
 int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmdShow)
-/*int nCmdShow - параметр отвечающий за то как будет показываться окно (свёрнуто, развёрнуто, на весь экран и т.д.).*/
 {
     
-    MSG msg{};                           // Структура, которая содержит в себе информацию о соообщениях (между Windows и окном или между окнами).
-    HWND hwnd{};                         // Дескриптор окна ( HANDLE указ. на объект ядра в котором храниться информация о нашем окне).
-    WNDCLASSEX wc{ sizeof(WNDCLASSEX) }; // Эта структура отвечает за некие х-ки окна (в фигурных скобках размеры).
+    MSG msg{};                           
+    HWND hwnd{};                         
+    WNDCLASSEX wc{ sizeof(WNDCLASSEX) }; 
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
     //wc.hbrBackground = reinterpret_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
@@ -26,7 +25,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
         {
         case WM_CREATE:
         {   
-            //-----------------------верхнее меню-----------------------------------
+            //-----------------------header memu-----------------------------------
             HMENU hMenuBar = CreateMenu();
             HMENU hMenuInfo = CreateMenu();
             HMENU hMenuAbout = CreateMenu();
@@ -38,7 +37,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
             SetMenu(hWnd, hMenuAbout);
             SetMenu(hWnd, hMenuBar);
            //-------------------------------------------------------------------------
-           //------------------------поле количество----------------------------------
+           //------------------------count fild----------------------------------
             HWND hTextCount = CreateWindow(
                 L"STATIC",
                 L"Количество кодов",
@@ -51,7 +50,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE,
                 30, 40, 200, 30, hWnd, nullptr, nullptr, nullptr
             );
-            SendMessage(hTextCount, WM_SETFONT, (WPARAM)hFont, TRUE);// стиль текста
+            SendMessage(hTextCount, WM_SETFONT, (WPARAM)hFont, TRUE);// font style
             hEditCount = CreateWindowEx(
                 WS_EX_CLIENTEDGE,
                 L"EDIT",
@@ -59,7 +58,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | WS_BORDER,
                 300, 20, 50, 30, hWnd, reinterpret_cast<HMENU>(clientElement::editCount), nullptr, nullptr
             );
-           //----------------------------поле идентификатор------------------------
+           //----------------------------ident fild------------------------
             HWND hTextIdent = CreateWindow(
                 L"STATIC",
                 L"Идентификатор кода",
@@ -72,7 +71,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE,
                 30, 90, 200, 30, hWnd, nullptr, nullptr, nullptr
             );
-            SendMessage(hTextIdent, WM_SETFONT, (WPARAM)hFont, TRUE);//стиль текста
+            SendMessage(hTextIdent, WM_SETFONT, (WPARAM)hFont, TRUE);
             hEditIdent = CreateWindowEx(
                 WS_EX_CLIENTEDGE,
                 L"EDIT",
@@ -80,20 +79,20 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL| WS_BORDER,
                 300, 70, 50, 30, hWnd, reinterpret_cast<HMENU>(clientElement::editIdent), nullptr, nullptr
             );
-           //--------------------поле длина кода------------------------------------
-            HWND hTextLenght = CreateWindow(
+           //--------------------fild lenght------------------------------------
+            HWND hTextLength = CreateWindow(
                 L"STATIC",
                 L"Длина кода",
                 WS_CHILD | WS_VISIBLE,
                 30, 140, 200, 30, hWnd, nullptr, nullptr, nullptr
             );
-            HWND hTextLenghtInfo = CreateWindow(
+            HWND hTextLengthInfo = CreateWindow(
                 L"STATIC",
                 L"цифровые значения 2 - 10",
                 WS_CHILD | WS_VISIBLE,
                 30, 160, 200, 30, hWnd, nullptr, nullptr, nullptr
             );
-            SendMessage(hTextLenght, WM_SETFONT, (WPARAM)hFont, TRUE);//стиль текста
+            SendMessage(hTextLength, WM_SETFONT, (WPARAM)hFont, TRUE);
             hEditLenght = CreateWindowEx(
                 WS_EX_CLIENTEDGE,
                 L"EDIT",
@@ -101,7 +100,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | WS_BORDER,
                 300, 140, 50, 30, hWnd, reinterpret_cast<HMENU>(clientElement::editLenght), nullptr, nullptr
             );
-           //--------------------------поле тип кода------------------------------
+           //--------------------------fild code_type------------------------------
             HWND hTextType = CreateWindow(
                 L"STATIC",
                 L"Тип кода",
@@ -114,7 +113,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE,
                 30, 210, 200, 35, hWnd, nullptr, nullptr, nullptr
             );
-            SendMessage(hTextType, WM_SETFONT, (WPARAM)hFont, TRUE);//стиль текста
+            SendMessage(hTextType, WM_SETFONT, (WPARAM)hFont, TRUE);
             hEditType = CreateWindowEx(
                 WS_EX_CLIENTEDGE,
                 L"EDIT",
@@ -122,7 +121,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                 WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL | WS_BORDER,
                 300, 190, 50, 30, hWnd, reinterpret_cast<HMENU>(clientElement::editType), nullptr, nullptr
             );
-               //------------------------------кнопка -----------------------------------
+               //------------------------------button-----------------------------------
             HWND hButton = CreateWindow(
                 L"BUTTON",
                 L"Сгенерировать",
@@ -138,10 +137,10 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
         case WM_COMMAND:
         {
             switch (LOWORD(wParam))
-            {//--------------------------------------действия на кнопку-----------------------------
+            {//--------------------------------------action on button-----------------------------
                 case clientElement::button:
                 {   
-                    //-----------------получение и пробразование данных из полей для ввода-------------------------
+                    //-----------------get and convert data from filds-------------------------
                     wstring wStrCountCodes{};
                     wStrCountCodes.resize(MAX_LENGHT);
                     GetWindowText(hEditCount, &wStrCountCodes[0], MAX_LENGHT);
@@ -168,13 +167,13 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                         break;
                     }
                     else 
-                    {// если поля не пустые
-                        //----------------------- преобразование wstring в string--------------------
+                    {// if filds ant empty
+                        //----------------------- convert wstring в string--------------------
                         string strCounCodes(wStrCountCodes.begin(), wStrCountCodes.end()); 
                         string strCodeLenght(wStrCodeLength.begin(), wStrCodeLength.end());
                         string strCodeIdent(wStrCodeIdent.begin(), wStrCodeIdent.end());
                         string strCodeType(wStrCodeType.begin(), wStrCodeType.end());
-                       //---------------------проверка введенных значений---------------------------
+                       //---------------------checking input data---------------------------
                         if (atoi(strCounCodes.c_str()) < 1||!regex_match(strCounCodes, regNum))
                         {
                             MessageBox(hWnd, L"Неверный формат количества:\nСтрока должна содержать только положительные числа.",nullptr, MB_ICONERROR);
@@ -199,7 +198,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                             SetWindowText(hEditType, nullptr);
                             break;
                         }
-                        else{// если значения прошли проверку переводим в инт и отдаем в функцию
+                        else{
                             int counCodes = atoi((to_string(stoi(wStrCountCodes))).c_str());
                             int codeLenght = atoi((to_string(stoi(wStrCodeLength))).c_str());
                             int codeType = atoi((to_string(stoi(wStrCodeType))).c_str());
@@ -207,7 +206,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
 
                             MessageBox(hWnd, L"Принято в обработку, не закрывайте приложение!", L"Ожидайте", MB_ICONINFORMATION);
 
-                            if (saveFile(codeGen(ident, codeLenght, counCodes, codeType), ident)) { // если все ок функция возвращает true и выводим окно
+                            if (saveFile(codeGen(ident, codeLenght, counCodes, codeType), ident)) { 
                                 MessageBox(hWnd, L"Ваш файл готов и находится на рабочем столе", L"Готово", MB_ICONINFORMATION);
                             }
                           
