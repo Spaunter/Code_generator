@@ -216,7 +216,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
                    
                 }
                 break;
-                //----------------------обработки нажатий на кнопки меню-------------------------
+                //----------------------check on push header button-------------------------
                 case clientElement::aboutApp: {
                     MessageBox(hWnd, L"CODE GENERATOR v 1.0 \n\nby Maksym Homenko", L"O программе", MB_OK); 
                 }
@@ -242,7 +242,7 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
         return 0;
 
         }
-        return DefWindowProc(hWnd, uMsg, wParam, lParam); // вызывается в случае если сообщение не обрабатывается
+        return DefWindowProc(hWnd, uMsg, wParam, lParam); 
     };
     wc.lpszClassName = L"MyAppClass";
     wc.lpszMenuName = nullptr;
@@ -250,20 +250,20 @@ int CALLBACK  wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmd
   
     if (!RegisterClassEx(&wc)) { return EXIT_FAILURE; }
        
-    hwnd = CreateWindow(wc.lpszClassName, L"CodeGen", /*WS_OVERLAPPEDWINDOW*/ WS_SYSMENU/*только закрыть*/, 700, 300, 400, 400, nullptr, nullptr, wc.hInstance, nullptr);
+    hwnd = CreateWindow(wc.lpszClassName, L"CodeGen", /*WS_OVERLAPPEDWINDOW*/ WS_SYSMENU/*only close*/, 700, 300, 400, 400, nullptr, nullptr, wc.hInstance, nullptr);
     if ( hwnd == INVALID_HANDLE_VALUE){ return EXIT_FAILURE;}
         
    
     ShowWindow(hwnd, nCmdShow); 
-    UpdateWindow(hwnd);         // перерисовка окна 
+    UpdateWindow(hwnd);          
 
-    while (GetMessage(&msg, nullptr, 0, 0)) // Цикл обработки сообщений
+    while (GetMessage(&msg, nullptr, 0, 0)) 
     {
-        TranslateMessage(&msg); // функция расшифровывает системное сообщение
-        DispatchMessage(&msg);  // функция  передаёт сообщение в оконную процедуру на обработку
+        TranslateMessage(&msg); 
+        DispatchMessage(&msg);  
     }
 
-    return static_cast<int> (msg.wParam); // возвращаемое значение точки входа
+    return static_cast<int> (msg.wParam); 
 
 };
 
