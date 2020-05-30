@@ -1,7 +1,7 @@
 #include "CodeGen.h"
 
 
-bool saveFile(vector<string>codes, string identifier) // сохранение в файл
+bool saveFile(vector<string>codes, string identifier) // save into file
 {
 	//---------------------------------сохранение на рабочий стол------------------------------
 	cout << "Your path to file >> ";
