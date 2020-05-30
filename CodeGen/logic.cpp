@@ -3,7 +3,7 @@
 
 bool saveFile(vector<string>codes, string identifier) // save into file
 {
-	//---------------------------------сохранение на рабочий стол------------------------------
+	//---------------------------------save on desktop------------------------------
 	cout << "Your path to file >> ";
 	TCHAR appData[MAX_PATH];
 	if (SUCCEEDED(SHGetFolderPath(NULL,
@@ -38,14 +38,14 @@ bool saveFile(vector<string>codes, string identifier) // save into file
 }
 
 
-vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int codeFormat) { // генирация кодов
+vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int codeFormat) { // code generation
 	srand(time(NULL));
 	vector<string>codes;
-	codes.reserve(countCodes);// выделяем память под все элементы
-	string tmpIdent = identifier;// храним начальное значение идентификатора
+	codes.reserve(countCodes);
+	string tmpIdent = identifier;
 	int i = 0;
 
-	if (codeFormat == 1) // код состоит из чисел
+	if (codeFormat == 1) // number code
 	{
 		for (; ;)
 		{
@@ -54,15 +54,15 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 				break;
 			}
 			else {
-				identifier = tmpIdent; // обнуляем идентификатор начальным значением
+				identifier = tmpIdent; 
 				for (int i = 1; i < lengthCodes; i++)
 				{
-					identifier += to_string(rand() % 9); // создаем код
+					identifier += to_string(rand() % 9); // create code
 				}
-				auto resut = find(codes.begin(), codes.end(), identifier); // проверяем на отсутствие кода в векторе 
+				auto resut = find(codes.begin(), codes.end(), identifier); // check for repetition
 				if (resut == codes.end())
 				{
-					codes.push_back(identifier);// если все ок пушим код 
+					codes.push_back(identifier);// push code in vector
 					i++;
 				}
 			}
@@ -70,7 +70,7 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 
 		}
 	}
-	if (codeFormat == 2) // код состоит из чисел и букв
+	if (codeFormat == 2) // number and letters code
 	{
 		for (; ;)
 		{
@@ -79,10 +79,10 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 				break;
 			}
 			else {
-				identifier = tmpIdent; // обнуляем идентификатор начальным значением
+				identifier = tmpIdent; 
 				for (int i = 1; i < lengthCodes; i++)
 				{
-					if (i % 2 == 0) // четный элемент будет буквой
+					if (i % 2 == 0) 
 					{
 						identifier += (char)('a' + rand() % 26);
 					}
@@ -90,10 +90,10 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 						identifier += to_string(rand() % 9);
 					}
 				}
-				auto resut = find(codes.begin(), codes.end(), identifier); // проверяем на отсутствие кода в векторе 
+				auto resut = find(codes.begin(), codes.end(), identifier); // check for repetition 
 				if (resut == codes.end())
 				{
-					codes.push_back(identifier);// если все ок пушим код
+					codes.push_back(identifier);// push code in vector
 					i++;
 				}
 				cout << i << endl;
