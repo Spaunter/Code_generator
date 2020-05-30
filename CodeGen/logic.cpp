@@ -43,7 +43,7 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 	vector<string>codes;
 	codes.reserve(countCodes);
 	string tmpIdent = identifier;
-	int i = 0;
+	//int i = 0;
 
 	if (codeFormat == 1) // number code
 	{
@@ -63,10 +63,10 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 				if (resut == codes.end())
 				{
 					codes.push_back(identifier);// push code in vector
-					i++;
+					//i++;
 				}
 			}
-			cout << i << endl;
+			//cout << i << endl;
 
 		}
 	}
@@ -94,9 +94,9 @@ vector<string>codeGen(string identifier, int lengthCodes, int countCodes, int co
 				if (resut == codes.end())
 				{
 					codes.push_back(identifier);// push code in vector
-					i++;
+					//i++;
 				}
-				cout << i << endl;
+				//cout << i << endl;
 			}
 		}
 
